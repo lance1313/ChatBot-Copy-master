@@ -146,6 +146,7 @@ public class ChatBotModel
 		}
 		else if (getchatCount() == 1)
 		{
+			
 			int userAge = Integer.parseInt(input);// takes int from string.
 			myUser.setAge(userAge);
 			userQuestion = "wow you're old !" + " What is your height";
