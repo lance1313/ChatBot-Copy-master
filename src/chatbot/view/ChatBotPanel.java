@@ -12,7 +12,7 @@ import chatbot.model.ChatBotModel;
 
 /**
  * 
- * @version1.1 10/21/14
+ * @version1.2 10/21/14- update GUI
  * @author jlin3312
  *
  */
@@ -28,6 +28,9 @@ public class ChatBotPanel extends JPanel
 	private JScrollPane chatPane;
 	private JButton secondButton;
 	private JScrollBar firstBar;
+	private JButton tweetButton;
+	private JButton saveButton;
+	private JButton loadButton;
 
 	/**
 	 * 
@@ -38,15 +41,17 @@ public class ChatBotPanel extends JPanel
 	{
 		this.baseController = baseController;
 		this.baseModel = baseModel;
-		firstButton = new JButton("click the button... it is so clicky.");
+		firstButton = new JButton("Chat");
 		firstTextField = new JTextField(25);
 		baseLayout = new SpringLayout();
-		chatArea = new JTextArea(5, 20);
+		
+		
+		chatArea = new JTextArea(10, 25);
 		chatPane = new JScrollPane(chatArea);
-
 		secondButton = new JButton("???");
+		
 		firstBar = new JScrollBar();
-
+		
 		setupPane();
 		setupPanel();
 		setupLayout();
@@ -72,9 +77,23 @@ public class ChatBotPanel extends JPanel
 
 	private void setupPane()
 	{
+		chatPane = new JScrollPane(chatArea);
+		baseLayout.putConstraint(SpringLayout.NORTH, firstButton, 6, SpringLayout.SOUTH, chatPane);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatPane, 20, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatPane, 250, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, chatPane, -20, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, secondButton, 0, SpringLayout.SOUTH, chatPane);
 		chatArea.setLineWrap(true);
 		chatArea.setWrapStyleWord(true);
 		chatArea.setEditable(false);
+		chatPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		chatPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		baseLayout.putConstraint(SpringLayout.WEST, firstButton, 152, SpringLayout.EAST, firstBar);
+		baseLayout.putConstraint(SpringLayout.WEST, secondButton, 0, SpringLayout.EAST, firstBar);
+		baseLayout.putConstraint(SpringLayout.EAST, firstButton, -150, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, secondButton, -147, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, secondButton, -169, SpringLayout.EAST, this);
+
 	}
 
 	/**
@@ -83,7 +102,7 @@ public class ChatBotPanel extends JPanel
 	private void setupPanel()
 	{
 		this.setBackground(Color.CYAN);
-		this.setSize(400, 400);
+		this.setSize(500, 500);
 		this.setLayout(baseLayout);// make the layout what you coded in the base
 									// layout
 		this.add(firstButton);
@@ -96,26 +115,17 @@ public class ChatBotPanel extends JPanel
 
 	private void setupLayout()// dumping ground
 	{
-
 		baseLayout.putConstraint(SpringLayout.WEST, chatPane, 100, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, firstBar, 0, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, firstBar, 0, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatPane, 200, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, firstBar, 0, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextField, -26, SpringLayout.NORTH, chatPane);
-		baseLayout.putConstraint(SpringLayout.NORTH, firstButton, 4, SpringLayout.SOUTH, chatPane);
-		baseLayout.putConstraint(SpringLayout.WEST, secondButton, 159, SpringLayout.EAST, firstBar);
 		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 80, SpringLayout.EAST, firstBar);
-		baseLayout.putConstraint(SpringLayout.WEST, firstButton, 91, SpringLayout.EAST, firstBar);
-		baseLayout.putConstraint(SpringLayout.NORTH, secondButton, 27, SpringLayout.SOUTH, firstButton);
-
 		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextField, -26, SpringLayout.NORTH, chatPane);
 		baseLayout.putConstraint(SpringLayout.NORTH, firstButton, 4, SpringLayout.SOUTH, chatPane);
-		
 		baseLayout.putConstraint(SpringLayout.NORTH, secondButton, 27, SpringLayout.SOUTH, firstButton);
 		baseLayout.putConstraint(SpringLayout.WEST, secondButton, 159, SpringLayout.EAST, firstBar);
 		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 80, SpringLayout.EAST, firstBar);
-		baseLayout.putConstraint(SpringLayout.WEST, firstButton, 91, SpringLayout.EAST, firstBar);
 
 	}
 
