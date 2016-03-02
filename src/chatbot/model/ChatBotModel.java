@@ -10,7 +10,7 @@ import chatbot.controller.ChatBotController;
  * This is where all of the methods are and sends them to the controller to send to the View.
  * 
  * @author jlin3312
- * @version1.4 11/11 updated proccess text and added notes.
+ * @version1.4 11/11 updated process text and added notes.
  */
 public class ChatBotModel
 {
@@ -24,7 +24,7 @@ public class ChatBotModel
 	private ArrayList<String> userInputList;
 
 	/**
-	 * creates an chatbot object with suppleid name and initializes the current number of chats to zero
+	 * creates an chatbot object with supplied name and initializes the current number of chats to zero
 	 * 
 	 * @param name
 	 */
