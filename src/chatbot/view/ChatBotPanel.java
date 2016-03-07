@@ -7,7 +7,7 @@ import java.awt.event.MouseWheelListener;
 
 import javax.swing.*;
 
-import chatbot.controller.ChatBotController;
+import chatbot.controller.*;
 import chatbot.model.ChatBotModel;
 
 /**
@@ -141,6 +141,16 @@ public class ChatBotPanel extends JPanel
 				firstTextField.setText("");// finish with empty text.
 			}
 		});
+		
+		tweetButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				baseController.sendTweet("No text to send.");
+			}
+		});
+			
+		
 
 	}
 

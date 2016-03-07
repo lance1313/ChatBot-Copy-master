@@ -3,6 +3,7 @@ package chatbot.controller;
 
 import javax.swing.JOptionPane;
 
+import chatbot.model.CTECTwitter;
 import chatbot.model.ChatBotModel;
 import chatbot.view.ChatBotFrame;
 import chatbot.view.ChatBotPanel;
@@ -16,36 +17,61 @@ import chatbot.view.ChatBotView;
  * @version 1.3 10/2/14 - Cleaned the quit method.
  */
 public class ChatBotController {
-	/**
-	 * 
-	 */
+	
 	private ChatBotView appView;
-	/**
-	 * 
-	 */
 	private ChatBotModel myAwesomeChatBot;
-	/**
-	 * 
-	 */
 	public static String startMessage;
-	/**
-	 * 
-	 */
 	private String quitMessage;
+	private CTECTwitter chatTwitter;
+	private ChatBotModel simpleBot;
+	private ChatBotView display;
+	private ChatBotFrame baseFrame;
 	/**
 	 * reference to GUI frame.
 	 */
 	private ChatBotFrame appFrame;
 
-	public ChatBotController() {
-		appView = new ChatBotView(this);
-		myAwesomeChatBot = new ChatBotModel("derf");
-
-		startMessage = "Welcome to the " + myAwesomeChatBot.getName()
-				+ " chatbot. What is your name?";
-		quitMessage = "good bye cruel world:)";
-		appFrame = new ChatBotFrame(this);// Instantiate the reference.
+	public ChatBotController() 
+	{
+		
+		
+		
+		
+//		appView = new ChatBotView(this);
+//		myAwesomeChatBot = new ChatBotModel("derf");
+//
+//		startMessage = "Welcome to the " + myAwesomeChatBot.getName()
+//				+ " chatbot. What is your name?";
+//		quitMessage = "good bye cruel world:)";
+//		appFrame = new ChatBotFrame(this);// Instantiate the reference.
 	}
+	
+	public void start()
+	{
+		
+	}
+	
+	public void chat()
+	{
+		
+	}
+	
+	public void shutDown()
+	{
+		
+
+	}
+	
+	public void sendTweet(String tweetText)
+	{
+		
+	}
+	
+	public void handleErrors(String errorMesage)
+	{
+		display.displayText(errorMesage);
+	}
+	
 
 	/**
 	 * this is a constructor.
@@ -53,17 +79,17 @@ public class ChatBotController {
 	public ChatBotModel getMyAwesomeChatBot() {
 		return myAwesomeChatBot;
 	}
-
-	public void start() {
-
-		((ChatBotPanel) appFrame.getContentPane())
-				.showTextMessage(startMessage);// same as the code line below
-												// good for only using it a few
-												// times.
-		// ChatBotPanel testPanel = (ChatBotPanel)
-		// appFrame.getContentPane();//gets me access to the panel.
-
-	}
+//
+//	public void start() {
+//
+//		((ChatBotPanel) appFrame.getContentPane())
+//				.showTextMessage(startMessage);// same as the code line below
+//												// good for only using it a few
+//												// times.
+//		// ChatBotPanel testPanel = (ChatBotPanel)
+//		// appFrame.getContentPane();//gets me access to the panel.
+//
+//	}
 
 	/**
 	 * 
@@ -92,5 +118,11 @@ public class ChatBotController {
 		appView.ShowChatBotMessage(quitMessage);
 		System.exit(0);
 	}
+
+	
+	
+	
+	
+	
 
 }

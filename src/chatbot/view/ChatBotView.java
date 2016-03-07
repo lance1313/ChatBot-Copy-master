@@ -57,6 +57,21 @@ public class ChatBotView {
 
 	}
 
+
+	
+	public String collectUserText(String displayText)
+	{
+		String userInput = "";
+		userInput = JOptionPane.showInputDialog(null, displayText,null, JOptionPane.INFORMATION_MESSAGE,null,null, "Type here please").toString();
+		
+		return userInput;
+	}
+	
+	public void displayText(String displayText)
+	{
+		JOptionPane.showInputDialog(null,displayText, JOptionPane.PLAIN_MESSAGE);
+	}
+
 }
 
 // + ChatBotController.getMyChatBot().getName(
