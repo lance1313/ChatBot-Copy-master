@@ -18,7 +18,7 @@ import chatbot.view.ChatBotView;
  */
 public class ChatBotController {
 	
-	private ChatBotView appView;
+	//private ChatBotView display;
 	private ChatBotModel myAwesomeChatBot;
 	public static String startMessage;
 	private String quitMessage;
@@ -26,6 +26,7 @@ public class ChatBotController {
 	private ChatBotModel simpleBot;
 	private ChatBotView display;
 	private ChatBotFrame baseFrame;
+	private CTECTwitter myTwitter;
 	/**
 	 * reference to GUI frame.
 	 */
@@ -33,17 +34,11 @@ public class ChatBotController {
 
 	public ChatBotController() 
 	{
-		
-		
-		
-		
-//		appView = new ChatBotView(this);
-//		myAwesomeChatBot = new ChatBotModel("derf");
-//
-//		startMessage = "Welcome to the " + myAwesomeChatBot.getName()
-//				+ " chatbot. What is your name?";
-//		quitMessage = "good bye cruel world:)";
-//		appFrame = new ChatBotFrame(this);// Instantiate the reference.
+		myTwitter = new CTECTwitter();
+		display = new ChatBotView(this);
+		String user =display.collectUserText("What is your name?");
+		baseFrame = new ChatBotFrame(this);
+
 	}
 	
 	public void start()
@@ -62,9 +57,9 @@ public class ChatBotController {
 
 	}
 	
-	public void sendTweet(String tweetText)
+	public void sendTweet(String tweet)
 	{
-		
+		myTwitter.sendTweet(tweet);
 	}
 	
 	public void handleErrors(String errorMesage)
@@ -72,57 +67,4 @@ public class ChatBotController {
 		display.displayText(errorMesage);
 	}
 	
-
-	/**
-	 * this is a constructor.
-	 */
-	public ChatBotModel getMyAwesomeChatBot() {
-		return myAwesomeChatBot;
-	}
-//
-//	public void start() {
-//
-//		((ChatBotPanel) appFrame.getContentPane())
-//				.showTextMessage(startMessage);// same as the code line below
-//												// good for only using it a few
-//												// times.
-//		// ChatBotPanel testPanel = (ChatBotPanel)
-//		// appFrame.getContentPane();//gets me access to the panel.
-//
-//	}
-
-	/**
-	 * 
-	 * @param input
-	 *            this says to the view what the chatbot is talking about.
-	 * @return
-	 */
-	public String getChatBotDialog(String input) {
-		String result = "";
-		if (myAwesomeChatBot.quitChecker(input)) {
-			quit();
-		}
-		result = myAwesomeChatBot.processText(input);
-
-		return result;
-	}
-
-	// start
-	// say hello
-	// dialog
-	// responed
-	// reply
-	// quit
-
-	private void quit() {
-		appView.ShowChatBotMessage(quitMessage);
-		System.exit(0);
-	}
-
-	
-	
-	
-	
-	
-
 }

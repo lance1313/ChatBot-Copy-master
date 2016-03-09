@@ -44,15 +44,13 @@ public class ChatBotView {
 		String result = "";
 
 		int wordLength = currentInput.length();
-		result = JOptionPane.showInputDialog(null, baseController
-				.getMyAwesomeChatBot().getName() + " says: " + currentInput);
+		result = JOptionPane.showInputDialog(null,  " says: " + currentInput);
 
 		return result;
 	}
 
 	public String ShowChatBotMessage(String currentInput) {
-		JOptionPane.showMessageDialog(null, baseController
-				.getMyAwesomeChatBot().getName() + " says " + currentInput);
+		JOptionPane.showMessageDialog(null,  " says " + currentInput);
 		return currentInput;
 
 	}

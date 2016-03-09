@@ -12,10 +12,11 @@ import chatbot.model.ChatBotModel;
 
 /**
  * 
- * @version1.2 10/21/14- update GUI
+ * @version1.4 2/29/16- update GUI
  * @author jlin3312
  *
  */
+@SuppressWarnings("serial")
 public class ChatBotPanel extends JPanel
 {
 
@@ -43,12 +44,16 @@ public class ChatBotPanel extends JPanel
 		this.baseModel = baseModel;
 		firstButton = new JButton("Chat");
 		baseLayout = new SpringLayout();
-		
-		
+		tweetButton = new JButton("sendTweet");
+		saveButton = new JButton("save");
+		loadButton = new JButton("load");
 		chatArea = new JTextArea(10, 25);
 		chatPane = new JScrollPane(chatArea);
-		
+		button = new JButton("???");
 		firstBar = new JScrollBar();
+		
+		firstTextField = new JTextField();
+		
 		
 		setupPane();
 		setupPanel();
@@ -97,20 +102,23 @@ public class ChatBotPanel extends JPanel
 		this.add(firstButton);
 		this.add(chatPane);
 		this.add(firstBar);
-		
-		button = new JButton("???");
-		
-		add(button);
-		
-		firstTextField = new JTextField();
-		
-		add(firstTextField);
+		this.add(tweetButton);
+		this.add(saveButton);
+		this.add(loadButton);
+		this.add(button);
+		this.add(firstTextField);
 		firstTextField.setColumns(10);
 
 	}
 
 	private void setupLayout()// dumping ground
 	{
+		baseLayout.putConstraint(SpringLayout.NORTH, tweetButton, 19, SpringLayout.SOUTH, firstTextField);
+		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 12, SpringLayout.EAST, firstBar);
+		baseLayout.putConstraint(SpringLayout.SOUTH, saveButton, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, loadButton, -18, SpringLayout.NORTH, saveButton);
+		baseLayout.putConstraint(SpringLayout.EAST, loadButton, 0, SpringLayout.EAST, saveButton);
+		baseLayout.putConstraint(SpringLayout.EAST, tweetButton, -151, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, button, 9, SpringLayout.SOUTH, firstButton);
 		baseLayout.putConstraint(SpringLayout.WEST, button, 0, SpringLayout.WEST, firstButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, firstTextField, 26, SpringLayout.SOUTH, button);
@@ -135,9 +143,9 @@ public class ChatBotPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				String currentInput = firstTextField.getText();
-				String result = baseController.getChatBotDialog(currentInput);
+				//String result = baseController.getChatBotDialog(currentInput);
 				showTextMessage(currentInput);// put current input as text
-				showTextMessage(result);// set up result as text
+				//showTextMessage(result);// set up result as text
 				firstTextField.setText("");// finish with empty text.
 			}
 		});

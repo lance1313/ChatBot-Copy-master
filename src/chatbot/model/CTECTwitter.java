@@ -6,8 +6,9 @@ import chatbot.controller.ChatBotController;
 import twitter4j.*;
 
 /**
- * version 0.2 ref tto twitter4j
- * @author jlin3312
+ * version 0.3 3/7/16
+ *  ref tto twitter4j
+ * @author jacob
  *
  */
 public class CTECTwitter
@@ -29,11 +30,13 @@ public class CTECTwitter
 	
 	public void sendTweet(String tweet)
 	{
-		try {
-			chatbotTwitter.updateStatus("I just tweeted from my Java Chatbot program! "
+		try 
+		{
+			chatbotTwitter.updateStatus("Jacob lindquist just tweeted from my Java Chatbot program! "
 					+ "#APCSRocks @CTECNow Thanks @cscheerleader & @codyhenrichsen!");
 		} 
-		catch (TwitterException e) {
+		catch (TwitterException e)
+		{
 			
 			e.printStackTrace();
 		}
