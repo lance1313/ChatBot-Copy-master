@@ -38,7 +38,7 @@ public class CTECTwitter
 		catch (TwitterException e)
 		{
 			
-			e.printStackTrace();
+			baseController.handleErrors(e.getErrorMessage());
 		}
 	}
 

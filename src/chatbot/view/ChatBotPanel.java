@@ -32,6 +32,7 @@ public class ChatBotPanel extends JPanel
 	private JButton loadButton;
 	private JButton button;
 	private JTextField firstTextField;
+	private JButton analyzeButton;
 
 	/**
 	 * 
@@ -51,7 +52,7 @@ public class ChatBotPanel extends JPanel
 		chatPane = new JScrollPane(chatArea);
 		button = new JButton("???");
 		firstBar = new JScrollBar();
-		
+		analyzeButton = new JButton("Analyze some sweet tweets");
 		firstTextField = new JTextField();
 		
 		
@@ -98,7 +99,7 @@ public class ChatBotPanel extends JPanel
 		this.setBackground(Color.CYAN);
 		this.setSize(500, 500);
 		this.setLayout(baseLayout);// make the layout what you coded in the base
-									// layout
+		this.add(analyzeButton);						// layout
 		this.add(firstButton);
 		this.add(chatPane);
 		this.add(firstBar);
@@ -113,6 +114,8 @@ public class ChatBotPanel extends JPanel
 
 	private void setupLayout()// dumping ground
 	{
+		baseLayout.putConstraint(SpringLayout.WEST, analyzeButton, 0, SpringLayout.WEST, firstTextField);
+		baseLayout.putConstraint(SpringLayout.NORTH, analyzeButton, 6, SpringLayout.SOUTH, tweetButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, tweetButton, 19, SpringLayout.SOUTH, firstTextField);
 		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 12, SpringLayout.EAST, firstBar);
 		baseLayout.putConstraint(SpringLayout.SOUTH, saveButton, -10, SpringLayout.SOUTH, this);
@@ -158,9 +161,20 @@ public class ChatBotPanel extends JPanel
 			}
 		});
 			
-		
+		analyzeButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String user = firstTextField.getText();
+				String results = baseController.analyze(user);
+				chatArea.setText(results);
+				
+			}
+		});
+			
+		}
 
-	}
+	
 
 	/**
 	 * 

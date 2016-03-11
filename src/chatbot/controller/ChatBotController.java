@@ -67,4 +67,13 @@ public class ChatBotController {
 		display.displayText(errorMesage);
 	}
 	
+	public String analyze(String userName)
+	{
+		String userAnalysis = "The twitter user" + userName + "has  ...";
+		
+		
+		
+		return userAnalysis;
+	}
+	
 }
