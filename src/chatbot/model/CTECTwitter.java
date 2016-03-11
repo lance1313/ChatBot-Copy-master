@@ -1,6 +1,8 @@
 package chatbot.model;
 
+//import java.awt.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import chatbot.controller.ChatBotController;
 import twitter4j.*;
@@ -41,5 +43,48 @@ public class CTECTwitter
 			baseController.handleErrors(e.getErrorMessage());
 		}
 	}
+	
+	public void loadTweets(String twitterHandel) throws TwitterException
+	{
+		Paging statusPage = new Paging(1,200);
+		int page = 1;
+		while(page <= 10)
+		{
+			statusPage.setPage(page);
+			statusList.addAll(chatbotTwitter.getUserTimeline(twitterHandel, statusPage));
+			page++;
+		}
+		for(Status currentStatus : statusList )
+		{
+			String [] tweetText = currentStatus.getText().split("");
+			for(String word : tweetText)
+			{
+				wordList.add(removePunctuation(word).toLowerCase());
+			}
+			
+			removeCommonEnglishWords(wordList);
+			removeEmptyText();
+		}
+	}
+	
+	
+
+	private List removeCommonEnglishWords(List<String> wordList)
+	{
+		return null;
+	}
+	
+	private void removeEmptyText()
+	{
+		
+	}
+	
+	private String removePunctuation(String currentString)
+	{
+		return null;
+		
+	}
+	
+	//public void 
 
 }
