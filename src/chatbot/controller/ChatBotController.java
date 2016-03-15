@@ -53,7 +53,7 @@ public class ChatBotController {
 	
 	public void shutDown()
 	{
-		
+		display.displayText("Goodbye");
 
 	}
 	
@@ -69,7 +69,7 @@ public class ChatBotController {
 	
 	public String analyze(String userName)
 	{
-		String userAnalysis = "The twitter user" + userName + "has  ...";
+		String userAnalysis = "The twitter user" + userName + "has  ..." + chatTwitter.topResults();
 		
 		
 		

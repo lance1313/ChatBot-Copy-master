@@ -93,7 +93,7 @@ public class CTECTwitter
 		return wordList; 
 	}
 	
-	public String topResults(List<String> wordList)
+	public String topResults()
 	{
 		String tweetResults = "";
 		int topWordLocation = 0;
