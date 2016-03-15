@@ -76,17 +76,28 @@ public class CTECTwitter
 	
 	private void removeEmptyText()
 	{
-		
+		for(int spot = 0; spot < wordList.size(); spot++)
+		{
+			if(wordList.get(spot).equals(""))
+			{
+				wordList.remove(spot);
+				//when remove in list must go back r you'll skip an answer.
+				spot--;
+			}
+		}
 	}
 	
+	// runs hen a string is taken in
 	private String removePunctuation(String currentString)
 	{
 		String punctuation = ".,'?!:;\"(){}^[]<>-";
 		String scrubbedString = "";
+		//goes through the word and removes puntuatiuon
 		for(int i = 0; i < currentString.length(); i++)
 		{
 			if(punctuation.indexOf(currentString.charAt(i)) == -1)
 			{
+				//adds char to end of word list.
 				scrubbedString += currentString.charAt(i);
 			}
 		}
