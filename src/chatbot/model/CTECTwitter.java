@@ -89,16 +89,61 @@ public class CTECTwitter
 			}
 		}
 		
-		//removeTwitterUsernamesFromList(wordList);
-		return wordList;
+		removeTwitterUsernamesFromList(wordList);
+		return wordList; 
 	}
 	
+	public String topResults(List<String> wordList)
+	{
+		String tweetResults = "";
+		int topWordLocation = 0;
+		//int wordUseCount = 0;
+		int topCount = 0;
+		
+		for(int index = 0; index < wordList.size(); index++ )
+		{
+			int wordUseCount = 1;
+			for(int spot = index + 1; spot < wordList.size(); spot++)
+			{
+				if(wordList.get(index).equals(wordList.get(spot)))
+				{
+					wordUseCount++;
+				}
+				if(wordUseCount > topCount)
+				{
+					topCount = wordUseCount;
+					topWordLocation = index;
+				}
+			}
+		}
+		
+		tweetResults = "The top word in the tweet was" + wordList.get(topWordLocation) + "and it was used"
+				+ topCount + " times!";
+		return tweetResults;
+		
+	}
+	
+	private void removeTwitterUsernamesFromList(List<String> wordList)
+	{
+		for(int wordCount = 0; wordCount < wordList.size(); wordCount++)
+		{
+			if(wordList.get(wordCount).length() >= 1 && wordList.get(wordCount).charAt(0) == '0')
+			{
+				wordList.remove(wordCount);
+				wordCount--;
+			}
+		}
+		
+		
+	}
+
 	private String[] importWordsToArray()
 	{
 		String[] boringWords;
 		int wordCount = 0;
 		try
-		{
+		{ 
+			//keep reading the list andfile till its done.
 			Scanner wordFile = new Scanner(new File("commonWords.txt"));
 			while(wordFile.hasNext())
 			{
@@ -113,6 +158,7 @@ public class CTECTwitter
 				boringWords[boringWordCount] = wordFile.next();
 				boringWordCount++;
 			}
+			//alwayclose files.              
 			wordFile.close();
 		}
 		catch(FileNotFoundException e)
