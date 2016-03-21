@@ -32,7 +32,7 @@ public class ChatBotFrame extends JFrame {
 
 		this.setContentPane(basePanel);// this means i can do all the parent
 										// class can do to .
-		this.setSize(400, 400);
+		this.setSize(500, 500);
 		this.setResizable(true);
 		setVisible(true);
 

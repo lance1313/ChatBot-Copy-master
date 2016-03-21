@@ -1,8 +1,5 @@
 package chatbot.model;
 
-//import java.awt.List;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,7 +13,7 @@ import twitter4j.*;
  * @author jacob
  *
  */
-public class CTECTwitter
+public class CTECTwitter 
 {
 	private ArrayList<Status> statusList;
 	private ArrayList<String> wordList;
@@ -49,6 +46,9 @@ public class CTECTwitter
 	
 	public void loadTweets(String twitterHandel) throws TwitterException
 	{
+		
+		statusList.clear();
+		wordList.clear();
 		Paging statusPage = new Paging(1,200);
 		int page = 1;
 		while(page <= 10)
@@ -72,7 +72,7 @@ public class CTECTwitter
 	
 	
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes" })
 	private List removeCommonEnglishWords(List<String> wordList)
 	{
 		String[] boringWords= importWordsToArray();
@@ -91,6 +91,31 @@ public class CTECTwitter
 		
 		removeTwitterUsernamesFromList(wordList);
 		return wordList; 
+	}
+	
+	public String sqmpleInvestigation()
+	{
+		String results ="";
+		
+		Query query = new Query("tornement");
+		query.setCount(100);
+		query.setGeoCode(new GeoLocation(40.58521,-111.869178), 5, Query.MILES);
+		query.setSince("2016-1-1");
+		try
+		{
+			QueryResult result = chatbotTwitter.search(query);
+			results.concat("Count :" + result.getTweets().size());
+			for(Status tweet : result.getTweets())
+			{
+				results.concat("@" + tweet.getUser().getName() + " : " + tweet.getText() + "\n");
+			}
+		}
+		catch(TwitterException error)
+		{
+			error.printStackTrace();
+		}
+		return results;
+		
 	}
 	
 	public String topResults()
@@ -136,21 +161,21 @@ public class CTECTwitter
 		
 		
 	}
-
+// reads common words.txtr a imports them to a string
+	@SuppressWarnings("resource")
 	private String[] importWordsToArray()
 	{
 		String[] boringWords;
 		int wordCount = 0;
-		try
-		{ 
+		 
 			//keep reading the list andfile till its done.
-			Scanner wordFile = new Scanner(new File("commonWords.txt"));
+			Scanner wordFile = new Scanner(getClass().getResourceAsStream("commonWords.txt"));
 			while(wordFile.hasNext())
 			{
 				wordCount++;
 				wordFile.next();
 			}
-			wordFile.reset();
+			wordFile = new Scanner(getClass().getResourceAsStream("commonWords.Text"));
 			boringWords = new String[wordCount];
 			int boringWordCount = 0;
 			while(wordFile.hasNext())
@@ -160,15 +185,12 @@ public class CTECTwitter
 			}
 			//alwayclose files.              
 			wordFile.close();
-		}
-		catch(FileNotFoundException e)
-		{
-			return new String[0];
-		}
+		
+		
 		
 		return boringWords;
 	}
-
+// removes twitter usernames  from a list of string objects 
 	private void removeEmptyText()
 	{
 		for(int spot = 0; spot < wordList.size(); spot++)

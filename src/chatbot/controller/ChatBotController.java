@@ -3,6 +3,7 @@ package chatbot.controller;
 
 import javax.swing.JOptionPane;
 
+import twitter4j.TwitterException;
 import chatbot.model.CTECTwitter;
 import chatbot.model.ChatBotModel;
 import chatbot.view.ChatBotFrame;
@@ -54,7 +55,7 @@ public class ChatBotController {
 	public void shutDown()
 	{
 		display.displayText("Goodbye");
-
+		System.exit(0);
 	}
 	
 	public void sendTweet(String tweet)
@@ -70,8 +71,16 @@ public class ChatBotController {
 	public String analyze(String userName)
 	{
 		String userAnalysis = "The twitter user" + userName + "has  ..." + chatTwitter.topResults();
+		try
+		{
+			chatTwitter.loadTweets(userName);
+		}
 		
-		
+		catch(TwitterException error)
+		{
+			handleErrors(error.getErrorMessage());
+		}
+		userAnalysis += chatTwitter.topResults();
 		
 		return userAnalysis;
 	}
