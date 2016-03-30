@@ -34,7 +34,7 @@ public class CTECTwitter
 	{
 		try 
 		{
-			chatbotTwitter.updateStatus("Jacob lindquist just tweeted from my Java Chatbot program! "
+			chatbotTwitter.updateStatus("Jacob just tweeted from my Java Chatbot program! "
 					+ "#APCSRocks @CTECNow Thanks @cscheerleader & @codyhenrichsen!");
 		} 
 		catch (TwitterException e)
@@ -93,13 +93,17 @@ public class CTECTwitter
 		return wordList; 
 	}
 	
-	public String sqmpleInvestigation()
+	public String sampleInvestigation(String question)
 	{
 		String results ="";
+		String userDate = "";
+		int userDistance = 0;
 		
-		Query query = new Query("tornement");
+		
+		Query query = new Query(question);
 		query.setCount(100);
-		query.setGeoCode(new GeoLocation(40.58521,-111.869178), 5, Query.MILES);
+		query.setGeoCode(new GeoLocation(40.58521,-111.869178), 5, Query.KILOMETERS);
+		
 		query.setSince("2016-1-1");
 		try
 		{

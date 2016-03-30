@@ -33,6 +33,7 @@ public class ChatBotPanel extends JPanel
 	private JButton button;
 	private JTextField firstTextField;
 	private JButton analyzeButton;
+	private JLabel promptLabel;
 
 	/**
 	 * 
@@ -54,6 +55,8 @@ public class ChatBotPanel extends JPanel
 		firstBar = new JScrollBar();
 		analyzeButton = new JButton("Analyze some sweet tweets");
 		firstTextField = new JTextField();
+		promptLabel = new JLabel("");
+		
 		
 		
 		setupPane();
@@ -108,12 +111,15 @@ public class ChatBotPanel extends JPanel
 		this.add(loadButton);
 		this.add(button);
 		this.add(firstTextField);
+		this.add(promptLabel);
 		firstTextField.setColumns(10);
 
 	}
 
 	private void setupLayout()// dumping ground
 	{
+		baseLayout.putConstraint(SpringLayout.NORTH, promptLabel, 50, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, promptLabel, 50, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, analyzeButton, 0, SpringLayout.WEST, firstTextField);
 		baseLayout.putConstraint(SpringLayout.NORTH, analyzeButton, 6, SpringLayout.SOUTH, tweetButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, tweetButton, 19, SpringLayout.SOUTH, firstTextField);
@@ -167,8 +173,28 @@ public class ChatBotPanel extends JPanel
 			{
 				String user = firstTextField.getText();
 				String results = baseController.analyze(user);
+				
 				chatArea.setText(results);
 				
+			}
+		});
+		
+		saveButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String file = IOController.saveFile(chatArea.getText());
+				promptLabel.setText(file);
+			}
+				
+		});
+		
+		loadButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String loadedText = IOController.readTextFromFile(promptLabel.getText());
+				chatArea.setText(loadedText);
 			}
 		});
 			

@@ -28,6 +28,7 @@ public class ChatBotController {
 	private ChatBotView display;
 	private ChatBotFrame baseFrame;
 	private CTECTwitter myTwitter;
+	private ChatBotPanel basePanel;
 	/**
 	 * reference to GUI frame.
 	 */
@@ -39,6 +40,7 @@ public class ChatBotController {
 		display = new ChatBotView(this);
 		String user =display.collectUserText("What is your name?");
 		baseFrame = new ChatBotFrame(this);
+		
 
 	}
 	
@@ -68,21 +70,27 @@ public class ChatBotController {
 		display.displayText(errorMesage);
 	}
 	
-	public String analyze(String userName)
+	public String analyze(String twitterTopic)
 	{
-		String userAnalysis = "The twitter user" + userName + "has  ..." + chatTwitter.topResults();
-		try
-		{
-			chatTwitter.loadTweets(userName);
-		}
 		
-		catch(TwitterException error)
-		{
-			handleErrors(error.getErrorMessage());
-		}
-		userAnalysis += chatTwitter.topResults();
 		
-		return userAnalysis;
+		
+		String userAnalysis = "what topic do you want to search? " ;
+//		userAnalysis = "what distance do you want to search? " ;
+//		userAnalysis = "were is your Geographical location?  ";
+		
+//		try
+//		{
+//			myTwitter.loadTweets(userName);
+//		}
+//		
+//		catch(TwitterException error)
+//		{
+//			handleErrors(error.getErrorMessage());
+//		}
+		//userAnalysis += myTwitter.topResults();
+		
+		return userAnalysis + "The twitter topic " + twitterTopic + " has  ... " + myTwitter.sampleInvestigation(twitterTopic);
 	}
 	
 }
