@@ -79,12 +79,11 @@ public class ChatBotModel
 	 */
 	private void fillTheMemeList()
 	{
-		memeList.add("Poke");
-		memeList.add("hello");
-		memeList.add(" my name");
-		memeList.add("cool");
-		memeList.add("bye");
-		memeList.add("sucker");
+		memeList.add("White house");
+		memeList.add("Republican");
+		memeList.add("Democrate");
+		memeList.add("Bernie");
+		memeList.add("Trump");
 	}
 
 	/**
