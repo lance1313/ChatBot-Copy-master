@@ -5,6 +5,11 @@ import java.util.*;
 
 import javax.swing.JOptionPane;
 
+/**
+ * 
+ * @author Jacob
+ *
+ */
 public class IOController 
 {
 	
